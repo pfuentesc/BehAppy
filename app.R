@@ -117,7 +117,9 @@ server <- function(input, output) {
     # Load all scripts
     source("behavioral_CMET.R")
     source("behavioral_NBACK.R")
+    source("behavioral_RLT.R")
     source("behavioral_RIMAS.R")
+    
     
     
     # Load and execute script
@@ -132,6 +134,12 @@ server <- function(input, output) {
       } else if(input$task=="nback") {
         
         behavioral_NBACK(outputdir, logdir, subjects, outfile)
+        
+        resultado <<- "Script ejecutado con éxito"
+        
+      } else if(input$task=="rlt") {
+        
+        behavioral_RLT(outputdir, logdir, subjects, outfile)
         
         resultado <<- "Script ejecutado con éxito"
         
