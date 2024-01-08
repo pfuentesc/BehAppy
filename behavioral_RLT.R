@@ -4,11 +4,6 @@
 
 # This version is a function version to be used with the Shiny App BehAppy
 
-#temp
-logdir <- "C:/Users/pfuentesc/Desktop/behappy"
-outdir <- "C:/Users/pfuentesc/Desktop/behappy"
-subs <- read.table("C:/Users/pfuentesc/Desktop/behappy/subjects.txt")$V1
-outfile <- "test_rlt"
 
 behavioral_RLT <- function(outputdir, logdir, subjects, outfile) {
   

@@ -46,7 +46,7 @@ ui <- fluidPage(
       selectInput("task", "Select task to analyze",
                   c("Select..." = "", 
                     "CMET" = "cmet", "NBACK" = "nback",
-                    "Rimas" = "rimas")),
+                    "RLT" = "rlt", "Rimas" = "rimas")),
       
       # Input: Select a file ----
       br(),
