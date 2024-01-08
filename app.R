@@ -106,7 +106,7 @@ server <- function(input, output) {
     
     # Go to app directory (for some reason this was changed after running the script once)
     setwd(appdir)
-    
+    print('hello')
     
     subjects <<- read.table(input$subjects$datapath)$V1
     outfile <<- input$outputname
