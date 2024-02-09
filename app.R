@@ -46,6 +46,7 @@ ui <- fluidPage(
       selectInput("task", "Select task to analyze",
                   c("Select..." = "", 
                     "CMET" = "cmet", "NBACK" = "nback",
+                    "NBACK (from 1.5T scanner in SJD)" = "nback_old", 
                     "RLT" = "rlt", "Rimas" = "rimas")),
       
       # Input: Select a file ----
@@ -117,6 +118,7 @@ server <- function(input, output) {
     # Load all scripts
     source("behavioral_CMET.R")
     source("behavioral_NBACK.R")
+    source("behavioral_NBACK_old_data.R")
     source("behavioral_RLT.R")
     source("behavioral_RIMAS.R")
     
@@ -134,6 +136,12 @@ server <- function(input, output) {
       } else if(input$task=="nback") {
         
         behavioral_NBACK(outputdir, logdir, subjects, outfile)
+        
+        resultado <<- "Script ejecutado con éxito"
+        
+      } else if(input$task=="nback_old") {
+        
+        behavioral_NBACK_old_data(outputdir, logdir, subjects, outfile)
         
         resultado <<- "Script ejecutado con éxito"
         
