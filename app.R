@@ -21,6 +21,11 @@ ui <- fluidPage(
         que este suele ser el motivo más habitual de errores."),
       br(),
       br(),
+      br(),
+      h3("Cosas rápidas"),
+      br(),
+      h4("Convertir TAP a CI (FSIQ)"),
+      textInput("tap", "Introduce las puntuaciones de TAP separadas por comas")
       
       
     ),
