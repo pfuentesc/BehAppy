@@ -9,7 +9,7 @@ ui <- fluidPage(
   
   sidebarLayout(
     sidebarPanel(
-      h4("Extracción de datos conductuales"),
+      h3("Extracción de datos conductuales"),
       p("Esta aplicación ejecuta los scripts para extraer datos conductuales
         de diferentes tareas de RM."),
       p("El resultado de ejecutar esta herramienta será un fichero en formato texto
@@ -21,6 +21,13 @@ ui <- fluidPage(
         que este suele ser el motivo más habitual de errores."),
       br(),
       br(),
+      br(),
+      h3("Funciones rápidas"),
+      br(),
+      h4("Convertir TAP a CI (FSIQ)"),
+      textInput("tap", "Introduce las puntuaciones de TAP separadas por comas"),
+      actionButton("runTAP", "Calcular"),
+      verbatimTextOutput("TAPresult")
       
       
     ),
@@ -28,7 +35,7 @@ ui <- fluidPage(
     
     mainPanel(
       
-      h4("Instrucciones"),
+      h3("Instrucciones"),
       p("Selecciona la tarea de la que quieres extraer los datos y sube un fichero de 
         texto en el que indiques los códigos de RM de los sujetos a analizar 
         (en el formato 000000_AAAAMMDD_ABC), con un sujeto en cada línea."),
@@ -99,6 +106,31 @@ server <- function(input, output) {
   #   outputdir <<- choose.dir()
   #   output$out_outputdir <- renderText(outputdir)
   # })
+  
+  # TAP
+  observeEvent(input$runTAP, {
+    
+    tap <<- as.integer(unlist(strsplit(input$tap, ",")))
+    
+    source("TAP.R")
+    
+    tryCatch({
+      
+      TAPresult <<- calculate_tap(tap)
+      
+    }, error = function(e) {
+      
+      TAPresult <<- paste("Error al ejecutar el script: ", e$message)
+      
+    })
+    
+    output$TAPresult <- renderText({
+      
+      TAPresult
+      
+    })
+    
+  })
   
   
   # Run script
