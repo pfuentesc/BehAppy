@@ -13,7 +13,7 @@ calculate_tap <- function(inputnum) {
   
   for (i in 1:length(inputnum)) {
     
-    conv_fsiq <- fsiq[inputnum]
+    conv_fsiq <<- fsiq[inputnum]
     
   }
   
